@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    displayMenu: false 
+  }
+
+  onMouseEnter = () => {
+    this.setState({ displayMenu: true })
+  }
+
+  onMouseLeave = () => {
+    this.setState({ displayMenu: false })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="dropdown" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+        <button className="dropdown_hover">| | |</button>
+        { this.state.displayMenu ? (
+          <div className='dropdown_menu'>
+            <a href="#Sign In">Sign In</a>
+            <a href="#Sign Up">Sign Up</a>
+          </div>
+        ) : null }
       </div>
     );
   }
